@@ -1,5 +1,7 @@
+import { ItemCard } from "./ItemCard";
+
 function App() {
-  return <h1>Hello World!</h1>;
+  return <ItemCard/>;
 }
 
 export default App;

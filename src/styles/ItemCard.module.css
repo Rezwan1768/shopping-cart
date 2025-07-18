@@ -1,0 +1,13 @@
+.card {
+  width: 400px;
+  border: 2px solid grey;
+}
+
+.card h2 {
+  font-size: 1rem;
+}
+
+.itemImg {
+  width: 60%;
+  height: auto;
+}
