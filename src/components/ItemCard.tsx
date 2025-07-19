@@ -1,17 +1,8 @@
 import { useState, useEffect } from "react";
+import type { Item } from "../types";
 import fullStar from "../assets/full-star.svg";
 import halfStar from "../assets/half-star.svg";
 import styles from "../styles/ItemCard.module.css";
-
-type Item = {
-  id: number,
-  title: string,
-  price: number,
-  description: string,
-  category: string,
-  image: string,
-  rating: { rate: number, count: number },
-}
 
 export function ItemCard() {
   const [item, setItem] = useState<Item | null>(null);
@@ -107,7 +98,7 @@ function showStars(rating: number) {
   }
 
   if (hasHalfStar) {
-    stars.push(<img key="half" src={halfStar} alt="star" width="30" height="30" />)
+    stars.push(<img key="half" src={halfStar} alt="semi-star" width="30" height="30" />)
   }
 
   return stars;
