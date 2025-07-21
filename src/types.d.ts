@@ -7,3 +7,10 @@ export type Item = {
   image: string,
   rating: { rate: number, count: number },
 }
+
+export type ItemsByCategory = {
+  mensClothing: Item[],
+  womensClothing: Item[],
+  jewelry: Item[]
+}
+
