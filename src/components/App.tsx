@@ -1,12 +1,9 @@
-import { ItemCard } from "./ItemCard";
-import { Products } from "./Products";
-
+import { Items } from "./Items";
 
 function App() {
   return (
     <>
-      <Products />
-      <ItemCard />
+      <Items />
     </>
   );
 }

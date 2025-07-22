@@ -1,11 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import type { Item } from "../types";
 import fullStar from "../assets/full-star.svg";
 import halfStar from "../assets/half-star.svg";
 import styles from "../styles/ItemCard.module.css";
 
-export function ItemCard() {
-  const [item, setItem] = useState<Item | null>(null);
+type ItemCardProps = {
+  item: Item;
+};
+
+export function ItemCard({item}: ItemCardProps) {
+  // const [item, setItem] = useState<Item | null>(null);
   const [amount, setAmount] = useState('1');
   const [isInCart, setIsInCart] = useState(false);
 
@@ -18,7 +22,6 @@ export function ItemCard() {
       if (Number(value) > 10) value = "10"; // Prevent going above limit
       setAmount(value);
     }
-
   }
 
   function handleBlur() {
@@ -34,25 +37,13 @@ export function ItemCard() {
     setIsInCart(true);
   }
 
-  useEffect(() => {
-    const url = "https://fakestoreapi.com/products/3";
-
-    (async function () {
-      const response = await fetch(url);
-      const data: Item = await response.json();
-      setItem(data);
-    })();
-  }, [])
-
-  if (!item) return null;
-
   const { title, price, description, image, rating: { rate, count } } = item;
   return (
     <div className={styles.card}>
 
       <h2>{title}</h2>
       <div>
-        {item && showStars(rate)}
+        {showStars(rate)}
         <span>{rate}</span>
         <p>{count} Reviews</p>
       </div>

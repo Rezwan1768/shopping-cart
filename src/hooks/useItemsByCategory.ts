@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import type { Item, ItemsByCategory } from "../types";
 
-export function useItemsByCategory() {
-  const [items, setItems] = useState<ItemsByCategory | null>(null);
+export function useItemsByCategory(retryId: number) {
+  const [allItems, setAllItems] = useState<ItemsByCategory | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
 
   useEffect(() => {
     let ignoreResult = false;
@@ -33,7 +32,7 @@ export function useItemsByCategory() {
           },
           { mensClothing: [], womensClothing: [], jewelry: [] }
         )
-        setItems(itemsByCategory);
+        setAllItems(itemsByCategory);
 
       } catch (error) {
         setError((error as Error).message);
@@ -43,7 +42,7 @@ export function useItemsByCategory() {
     })();
 
     return () => {ignoreResult = true};
-  }, [])
+  }, [retryId])
 
-  return { items, loading, error };
+  return { allItems, loading, error };
 }
