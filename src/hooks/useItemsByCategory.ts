@@ -8,6 +8,7 @@ export function useItemsByCategory(retryId: number) {
 
   useEffect(() => {
     let ignoreResult = false;
+    setLoading(true);
     (async function fetchItems() {
       try {
         const response = await fetch('https://fakestoreapi.com/products');

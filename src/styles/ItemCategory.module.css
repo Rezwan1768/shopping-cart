@@ -1,0 +1,17 @@
+.heading {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.heading.spacing {
+  margin-top: 20px;
+  border-top: 2px solid var(--border-color);
+}
+
+.itemContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+

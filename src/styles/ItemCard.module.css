@@ -1,13 +1,78 @@
 .card {
-  width: 400px;
-  border: 2px solid grey;
+  --gap-amount: 5px;
+  width: clamp(250px, 20vw, 400px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: var(--gap-amount);
+  border: 2px solid var(--border-color);
+  padding: calc(var(--gap-amount) * 2);
 }
 
-.card h2 {
-  font-size: 1rem;
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 20%;
 }
 
 .itemImg {
   width: 60%;
+  aspect-ratio: 1/1.1;
   height: auto;
+}
+
+.ellipses {
+  /* Shows 2 lines of text, and shows ellipses if any extra lines were cut off*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.title {
+  composes: ellipses;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+
+  /* Make item name take two lines of space */
+  --line-height: 1.2rem;
+  line-height: var(--line-height);
+  height: calc(var(--line-height) * 2);
+  height: fit-content
+}
+
+.description {
+  composes: ellipses;
+  word-break: break-all;
+}
+
+.cartActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.amountInput {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.amountInput input {
+  padding: 2px 0;
+  padding-left: 3px;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+.cartActions button {
+  padding: 5px;
+  font-weight: bold;
 }

@@ -1,0 +1,11 @@
+.ratingContainer {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ratingContainer img {
+  width: 20px;
+  aspect-ratio: 1;
+}
