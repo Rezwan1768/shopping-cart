@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: var(--contrast-color);
+  color: var(--background-color);
+}
+
+.header h1 {
+  font-size: clamp(1.2rem, 3vw, 24px);
+}
+
+.header button {
+  font-weight: bold;
+  padding: 2px 4px;
+  background-color: var(--background-color);
+  color: var(--contrast-color);
+}

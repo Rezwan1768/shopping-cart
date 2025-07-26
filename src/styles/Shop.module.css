@@ -47,16 +47,28 @@
   background-color:red;
 }
 
+.shopItems {
+  --nav-link-width: clamp(60px, 8vw, 80px);
+  padding: 5px;
+  padding-left: calc(var(--nav-link-width) + 16px);
+}
+
 .nav {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 15px;
+  gap: min(2vw, 15px);
   margin-bottom: 20px;
+
+  position: fixed;
+  left: 5px;
 }
 
 .nav a {
   border: 2px solid var(--contrast-color);
-  width: 80px;
+  font-size: clamp(12px, 2vw, 14px);
+  width: var(--nav-link-width);
+  padding: 2px;
   text-align: center;
   text-decoration: none;
   color: var(--contrast-color);

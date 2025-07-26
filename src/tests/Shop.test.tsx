@@ -1,7 +1,7 @@
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Items } from "../components/Items";
+import { Shop } from "../components/Shop";
 import { useItemsByCategory } from "../hooks/useItemsByCategory";
 
 vi.mock("../hooks/useItemsByCategory");
@@ -24,7 +24,7 @@ beforeEach(() => {
   vi.clearAllMocks();
 });
 
-describe("Items Component", () => {
+describe("Shop Component", () => {
   test("renders loading state", () => {
     mockedUseItemsByCategory.mockReturnValue({
       loading: true,
@@ -32,7 +32,7 @@ describe("Items Component", () => {
       allItems: null,
     });
 
-    render(<Items />);
+    render(<Shop />);
     expect(screen.getByRole("status")).toBeInTheDocument();
   });
 
@@ -43,7 +43,7 @@ describe("Items Component", () => {
       allItems: null,
     });
 
-    render(<Items />);
+    render(<Shop />);
     expect(screen.getByText(/failed to fetch/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /try again/i })).toBeInTheDocument();
   });
@@ -54,7 +54,7 @@ describe("Items Component", () => {
       .mockReturnValueOnce({ loading: true, error: null, allItems: null }); // after retry
 
     const user = userEvent.setup();
-    render(<Items />);
+    render(<Shop/>);
 
     await user.click(screen.getByRole("button", { name: /try again/i }));
     expect(screen.getByRole("status")).toBeInTheDocument();
@@ -71,7 +71,7 @@ describe("Items Component", () => {
       },
     });
 
-    render(<Items />);
+    render(<Shop />);
 
     // Navigation links
     expect(screen.getByRole("link", { name: /Men's/ })).toBeInTheDocument();

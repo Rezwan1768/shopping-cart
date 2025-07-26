@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useItemsByCategory } from "../hooks/useItemsByCategory";
 import { ItemCategory } from "./ItemCategory";
-import styles from "../styles/Items.module.css";
+import styles from "../styles/Shop.module.css";
+import { Header } from "./Header";
 
-export function Items() {
+export function Shop() {
   const [retryId, setRetryId] = useState(0);  // To refetch data on error
   const { allItems, loading, error } = useItemsByCategory(retryId);
 
@@ -23,14 +24,17 @@ export function Items() {
 
   return (allItems &&
     <>
+      <Header />
       <nav className={styles.nav}>
         <a href="#mens">Men's</a>
         <a href="#womens">Women's</a>
         <a href="#jewelry">Jewelry</a>
       </nav>
-      <ItemCategory heading="Men's Clothing" items={allItems.mensClothing} id="mens" isFirst={true} />
-      <ItemCategory heading="Women's Clothing" items={allItems.womensClothing} id="womens" />
-      <ItemCategory heading="Jewelry" items={allItems.jewelry} id="jewelry" />
+      <section className={styles.shopItems}>
+        <ItemCategory heading="Men's Clothing" items={allItems.mensClothing} id="mens" isFirst={true} />
+        <ItemCategory heading="Women's Clothing" items={allItems.womensClothing} id="womens" />
+        <ItemCategory heading="Jewelry" items={allItems.jewelry} id="jewelry" />
+      </section>
     </>
   )
 }

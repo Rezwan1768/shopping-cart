@@ -1,9 +1,9 @@
-import { Items } from "./Items";
+import { Shop } from "./Shop";
 
 function App() {
   return (
     <>
-      <Items />
+      <Shop />
     </>
   );
 }
