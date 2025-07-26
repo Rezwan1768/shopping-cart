@@ -9,7 +9,7 @@ export function Items() {
 
   if (loading) return (
     <div className={styles.container}>
-      <div className={styles.loadSpinner}></div>
+      <div className={styles.loadSpinner} role="status" aria-label="Loading"></div>
     </div>);
 
   if (error) return (
@@ -30,7 +30,7 @@ export function Items() {
       </nav>
       <ItemCategory heading="Men's Clothing" items={allItems.mensClothing} id="mens" isFirst={true} />
       <ItemCategory heading="Women's Clothing" items={allItems.womensClothing} id="womens" />
-      <ItemCategory heading="Jewelry" items={allItems.jewelry} id="jewelry"/>
+      <ItemCategory heading="Jewelry" items={allItems.jewelry} id="jewelry" />
     </>
   )
 }

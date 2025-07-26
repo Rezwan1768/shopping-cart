@@ -10,9 +10,10 @@ type ItemCategoryProps = {
 }
 
 export function ItemCategory({ heading, items, id, isFirst = false }: ItemCategoryProps) {
+  // isFirst prop is just for stylistic purpose
   const classes = `${styles.heading} ${isFirst ? "" : styles.spacing}`;
   return (
-    <section id={id}>
+    <section id={id} data-testid="item-section">
       <h2 className={classes}>{heading}</h2>
       <div className={styles.itemContainer}>
         {items.length > 0 ?
