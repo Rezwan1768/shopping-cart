@@ -24,7 +24,7 @@ export function Shop() {
 
   return (allItems &&
     <>
-      <Header />
+      <Header/>
       <nav className={styles.nav}>
         <a href="#mens">Men's</a>
         <a href="#womens">Women's</a>

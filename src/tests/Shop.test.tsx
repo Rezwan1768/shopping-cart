@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Shop } from "../components/Shop";
 import { useItemsByCategory } from "../hooks/useItemsByCategory";
+import { MemoryRouter } from "react-router";
 
 vi.mock("../hooks/useItemsByCategory");
 // Casts the imported function to a mocked version so TypeScript recognizes mock methods
@@ -54,7 +55,7 @@ describe("Shop Component", () => {
       .mockReturnValueOnce({ loading: true, error: null, allItems: null }); // after retry
 
     const user = userEvent.setup();
-    render(<Shop/>);
+    render(<Shop />);
 
     await user.click(screen.getByRole("button", { name: /try again/i }));
     expect(screen.getByRole("status")).toBeInTheDocument();
@@ -71,7 +72,9 @@ describe("Shop Component", () => {
       },
     });
 
-    render(<Shop />);
+    render(<MemoryRouter>
+      <Shop />
+    </MemoryRouter>);
 
     // Navigation links
     expect(screen.getByRole("link", { name: /Men's/ })).toBeInTheDocument();
