@@ -1,11 +1,15 @@
-import { Outlet } from "react-router";
+import { useState } from "react";
+import { Outlet} from "react-router";
+import type { CartItem } from "../types";
 import { Header } from "./Header";
 
 function App() {
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
   return (
     <>
       <Header />
-      <Outlet/>
+      <Outlet context={{ cartItems, setCartItems }} />
     </>
   );
 }
