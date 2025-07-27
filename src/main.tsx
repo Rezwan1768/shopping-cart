@@ -5,13 +5,16 @@ import "./styles/index.css";
 import App from "./components/App";
 import { Cart } from "./components/Cart";
 import { ErrorPage } from "./components/ErrorPage";
+import { Shop } from "./components/Shop";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/" element={<App />}>
+          <Route index element={<Shop />} />
+          <Route path="cart" element={<Cart />} />
+        </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

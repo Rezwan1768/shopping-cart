@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useItemsByCategory } from "../hooks/useItemsByCategory";
 import { ItemCategory } from "./ItemCategory";
 import styles from "../styles/Shop.module.css";
-import { Header } from "./Header";
 
 export function Shop() {
   const [retryId, setRetryId] = useState(0);  // To refetch data on error
@@ -24,7 +23,6 @@ export function Shop() {
 
   return (allItems &&
     <>
-      <Header/>
       <nav className={styles.nav}>
         <a href="#mens">Men's</a>
         <a href="#womens">Women's</a>

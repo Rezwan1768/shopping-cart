@@ -1,7 +1,6 @@
-import { Header } from "./Header";
 
 export function Cart() {
   return(
-    <Header />
+    <h2>In cart</h2>
   )
 }
