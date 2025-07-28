@@ -42,7 +42,7 @@
   --line-height: 1.2rem;
   line-height: var(--line-height);
   height: calc(var(--line-height) * 2);
-  height: fit-content
+  height: fit-content;
 }
 
 .description {
@@ -56,19 +56,6 @@
   align-items: center;
   font-weight: bold;
   font-size: 1rem;
-}
-
-.amountInput {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.amountInput input {
-  padding: 2px 0;
-  padding-left: 3px;
-  font-weight: inherit;
-  font-size: inherit;
 }
 
 .cartActions button {

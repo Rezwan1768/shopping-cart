@@ -1,0 +1,12 @@
+.amountInput {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.amountInput input {
+  padding: 2px 0;
+  padding-left: 3px;
+  font-weight: inherit;
+  font-size: inherit;
+}
