@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 
+// Fallback component for unmatched routes under the root path
 export function ErrorPage() {
   return (
     <div className="center">

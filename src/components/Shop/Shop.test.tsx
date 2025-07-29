@@ -1,8 +1,8 @@
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Shop } from "../components/Shop";
-import { useItemsByCategory } from "../hooks/useItemsByCategory";
+import { Shop } from "./Shop";
+import { useItemsByCategory } from "../../hooks/useItemsByCategory";
 import { MemoryRouter } from "react-router";
 
 vi.mock("../hooks/useItemsByCategory");
@@ -46,12 +46,18 @@ describe("Shop Component", () => {
 
     render(<Shop />);
     expect(screen.getByText(/failed to fetch/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /try again/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /try again/i }),
+    ).toBeInTheDocument();
   });
 
   test("clicking retry shows loading state", async () => {
     mockedUseItemsByCategory
-      .mockReturnValueOnce({ loading: false, error: "Failed to fetch", allItems: null }) // initial
+      .mockReturnValueOnce({
+        loading: false,
+        error: "Failed to fetch",
+        allItems: null,
+      }) // initial
       .mockReturnValueOnce({ loading: true, error: null, allItems: null }); // after retry
 
     const user = userEvent.setup();
@@ -67,14 +73,18 @@ describe("Shop Component", () => {
       error: null,
       allItems: {
         mensClothing: [mockItem({ id: 1, title: "Shirt" })],
-        womensClothing: [mockItem({ id: 2, title: "Dress", category: "women's clothing" })],
+        womensClothing: [
+          mockItem({ id: 2, title: "Dress", category: "women's clothing" }),
+        ],
         jewelry: [mockItem({ id: 3, title: "Necklace", category: "jewelry" })],
       },
     });
 
-    render(<MemoryRouter>
-      <Shop />
-    </MemoryRouter>);
+    render(
+      <MemoryRouter>
+        <Shop />
+      </MemoryRouter>,
+    );
 
     // Navigation links
     expect(screen.getByRole("link", { name: /Men's/ })).toBeInTheDocument();
@@ -82,8 +92,14 @@ describe("Shop Component", () => {
     expect(screen.getByRole("link", { name: /jewelry/i })).toBeInTheDocument();
 
     // Category headings
-    expect(screen.getByRole("heading", { name: /Men's Clothing/ })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /women's clothing/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /jewelry/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /Men's Clothing/ }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /women's clothing/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /jewelry/i }),
+    ).toBeInTheDocument();
   });
 });

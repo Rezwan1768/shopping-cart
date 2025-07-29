@@ -1,6 +1,6 @@
-import { useCartContext } from "../hooks/useCartContext";
-import { CartItem } from "./CartItem";
-import styles from "../styles/Cart.module.css";
+import { useCartContext } from "../../hooks/useCartContext";
+import { CartItem } from "../CartItem/CartItem";
+import styles from "./Cart.module.css";
 
 export function Cart() {
   const { cartItems } = useCartContext();

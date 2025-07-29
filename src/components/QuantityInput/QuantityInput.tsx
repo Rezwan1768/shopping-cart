@@ -1,6 +1,6 @@
 import { useState } from "react";
-import styles from "../styles/QuantityInput.module.css";
-import { useCartContext } from "../hooks/useCartContext";
+import styles from "./QuantityInput.module.css";
+import { useCartContext } from "../../hooks/useCartContext";
 
 type QuantityInputProps = {
   id: number;

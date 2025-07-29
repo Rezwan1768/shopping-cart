@@ -1,8 +1,8 @@
-import { useCartContext } from "../hooks/useCartContext";
-import type { Item, CartItem } from "../types";
-import { StarRating } from "./StarRating";
-import styles from "../styles/ItemCard.module.css";
-import { QuantityInput } from "./QuantityInput";
+import { useCartContext } from "../../hooks/useCartContext";
+import type { Item, CartItem } from "../../types";
+import { StarRating } from "../StarRating/StartRating";
+import styles from "./ItemCard.module.css";
+import { QuantityInput } from "../QuantityInput/QuantityInput";
 import { useState } from "react";
 
 type ItemCardProps = {
@@ -18,6 +18,8 @@ export function ItemCard({ item }: ItemCardProps) {
     image,
     rating: { rate, count },
   } = item;
+
+  // Extract values from react routers outlet context
   const { cartItems, addItem } = useCartContext();
 
   // Check if the item is already in the cart

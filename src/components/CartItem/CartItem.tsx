@@ -1,7 +1,7 @@
-import type { CartItem } from "../types";
-import styles from "../styles/CartItem.module.css";
-import { QuantityInput } from "./QuantityInput";
-import { useCartContext } from "../hooks/useCartContext";
+import type { CartItem } from "../../types";
+import styles from "./CartItem.module.css";
+import { QuantityInput } from "../QuantityInput/QuantityInput";
+import { useCartContext } from "../../hooks/useCartContext";
 
 export function CartItem({ item }: { item: CartItem }) {
   const { id, title, image, price, quantity } = item;
@@ -18,7 +18,7 @@ export function CartItem({ item }: { item: CartItem }) {
         {/* Display total price for this item (unit price × quantity) */}
         <p>${(price * quantity).toFixed(2)}</p>
 
-        {/* Allow user to update quantity of the item */}
+        {/* Allow user to update quantity of the item, capped at 1 and 10 */}
         <QuantityInput id={id} initialValue={quantity} />
 
         <button className={styles.removeBtn} onClick={() => removeItem(id)}>

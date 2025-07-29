@@ -3,9 +3,9 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./styles/index.css";
 import App from "./components/App";
-import { Cart } from "./components/Cart";
-import { ErrorPage } from "./components/ErrorPage";
-import { Shop } from "./components/Shop";
+import { Cart } from "./components/Cart/Cart";
+import { ErrorPage } from "./components/ErrorPage/ErrorPage";
+import { Shop } from "./components/Shop/Shop";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
