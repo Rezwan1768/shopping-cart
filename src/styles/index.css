@@ -29,6 +29,7 @@ body {
 
 #root {
   max-width: 1280px;
+  min-width: 400px;
   margin: 0 auto;
   position: relative;
 }
@@ -50,6 +51,6 @@ button {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content:  center;
+  justify-content: center;
   align-items: center;
 }

@@ -1,0 +1,35 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 5px;
+}
+
+.titleImage {
+  flex: 2;
+}
+
+.titleImage h2 {
+  font-size: 1rem;
+}
+
+.titleImage img {
+  width: 100px;
+  aspect-ratio: 1/1.1;
+  height: auto;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.removeBtn {
+  font-size: inherit;
+  font-weight: bold;
+  padding: 2px 4px;
+}

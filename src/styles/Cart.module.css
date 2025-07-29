@@ -1,0 +1,28 @@
+.cart {
+  padding: 0 10px;
+}
+
+.buy {
+  width: min-content;
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.buy > * {
+  white-space: nowrap;
+}
+
+.buy button {
+  padding: 4px;
+  font-weight: bold;
+}
+
+.buy button {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+}
+
+.buy button span {
+  font-size: 12px;
+}

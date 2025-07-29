@@ -20,10 +20,14 @@ export function ItemCard({ item }: ItemCardProps) {
   } = item;
   const { cartItems, addItem } = useCartContext();
 
+  // Check if the item is already in the cart
   const cartItem = cartItems.find((item) => item.id === id);
   const isInCart = !!cartItem;
 
+  // Focus state is used to control auto-focus behavior for QuantityInput
   const [focus, setFocus] = useState(false);
+
+  // Adds the item to the cart with a default quantity of 1
   function handleAdd() {
     const newItem: CartItem = {
       id,
@@ -34,7 +38,7 @@ export function ItemCard({ item }: ItemCardProps) {
     };
 
     addItem(newItem);
-    setFocus(true);
+    setFocus(true); // Trigger focus when the quantity input appears
   }
 
   return (
@@ -51,19 +55,22 @@ export function ItemCard({ item }: ItemCardProps) {
         width="100"
         height="110"
       />
+
       <p className={styles.description}>{description}</p>
 
       <div className={styles.cartActions}>
         <p>${price}</p>
 
         {isInCart ? (
-          /* If the item is already in the cart, allow user to change quantity */
+          // Trigger focus when the quantity input appears
           <QuantityInput
             id={id}
             initialValue={cartItem.quantity}
             focus={focus}
+            removeWhenZero={true}
           />
         ) : (
+          // If not in cart, show button to add it
           <button onClick={handleAdd}>Add to Cart</button>
         )}
       </div>
