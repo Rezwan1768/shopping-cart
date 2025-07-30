@@ -1,7 +1,8 @@
 import { useOutletContext } from "react-router";
-import type { CartItem } from "../types";
+import type { CartItem, ItemsByCategory } from "../types";
 
 type CartOutletContext = {
+  allItems: ItemsByCategory;
   cartItems: CartItem[];
   setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
 };
@@ -9,7 +10,8 @@ type CartOutletContext = {
 // Custom hook to encapsulate cart logic shared via React Router outlet context
 export function useCartContext() {
   // Access cart items and state setter from the outlet context
-  const { cartItems, setCartItems } = useOutletContext<CartOutletContext>();
+  const { allItems, cartItems, setCartItems } =
+    useOutletContext<CartOutletContext>();
 
   function removeItem(id: number) {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
@@ -37,5 +39,5 @@ export function useCartContext() {
     setCartItems((prev) => [...prev, item]);
   }
 
-  return { cartItems, addItem, removeItem, updateQuantity };
+  return { allItems, cartItems, addItem, removeItem, updateQuantity };
 }

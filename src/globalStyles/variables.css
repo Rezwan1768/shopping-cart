@@ -8,7 +8,6 @@
   --background-color: var(--dark-theme-background);
   --text-color: var(--dark-theme-text-color);
   --contrast-color: var(--light-theme-background);
-  
+
   --border-color: rgb(128, 128, 128);
 }
-

@@ -4,6 +4,7 @@ import { StarRating } from "../StarRating/StartRating";
 import styles from "./ItemCard.module.css";
 import { QuantityInput } from "../QuantityInput/QuantityInput";
 import { useState } from "react";
+import { Link } from "react-router";
 
 type ItemCardProps = {
   item: Item;
@@ -46,18 +47,21 @@ export function ItemCard({ item }: ItemCardProps) {
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
-        <h3 className={styles.title}>{title}</h3>
+        <Link to={`/item/${id}`}>
+          <h3 className={styles.title}>{title}</h3>
+        </Link>
         <StarRating rating={rate} reviewCount={count} />
       </div>
 
-      <img
-        className={styles.itemImg}
-        src={image}
-        alt={title}
-        width="100"
-        height="110"
-      />
-
+      <Link to={`/item/${id}`}>
+        <img
+          className={styles.itemImg}
+          src={image}
+          alt={title}
+          width="100"
+          height="110"
+        />
+      </Link>
       <p className={styles.description}>{description}</p>
 
       <div className={styles.cartActions}>

@@ -1,4 +1,5 @@
 import type { CartItem } from "../../types";
+import { Link } from "react-router";
 import styles from "./CartItem.module.css";
 import { QuantityInput } from "../QuantityInput/QuantityInput";
 import { useCartContext } from "../../hooks/useCartContext";
@@ -9,10 +10,12 @@ export function CartItem({ item }: { item: CartItem }) {
 
   return (
     <div className={styles.card}>
-      <div className={styles.titleImage}>
-        <h2>{title}</h2>
-        <img src={image} alt={title} width="100" height="110" />
-      </div>
+      <Link to={`/item/${id}`}>
+        <div className={styles.titleImage}>
+          <h2>{title}</h2>
+          <img src={image} alt={title} width="100" height="110" />
+        </div>
+      </Link>
 
       <div className={styles.controls}>
         {/* Display total price for this item (unit price × quantity) */}

@@ -1,32 +1,9 @@
-import { useState } from "react";
-import { useItemsByCategory } from "../../hooks/useItemsByCategory";
+import { useCartContext } from "../../hooks/useCartContext";
 import { ItemCategory } from "../ItemCategory/ItemCategory";
 import styles from "./Shop.module.css";
 
 export function Shop() {
-  const [retryId, setRetryId] = useState(0); // To refetch data on error
-  const { allItems, loading, error } = useItemsByCategory(retryId);
-
-  if (loading)
-    return (
-      <div className={styles.container}>
-        <div
-          className={styles.loadSpinner}
-          role="status"
-          aria-label="Loading"
-        ></div>
-      </div>
-    );
-
-  if (error)
-    return (
-      <div className={styles.container}>
-        <div className={styles.error}>
-          <p>Something went wrong: {error}</p>
-          <button onClick={() => setRetryId(retryId + 1)}>Try Again</button>
-        </div>
-      </div>
-    );
+  const { allItems } = useCartContext();
 
   return (
     allItems && (

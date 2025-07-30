@@ -4,6 +4,7 @@
  * have access to the real hook implementation.
  **/
 export const useCartContext = vi.fn(() => ({
+  allItems: {},
   cartItems: [],
   addItem: vi.fn(),
   removeItem: vi.fn(),
