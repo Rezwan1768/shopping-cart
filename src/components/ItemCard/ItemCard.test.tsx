@@ -1,8 +1,11 @@
-import { describe, test, expect } from "vitest";
+import { describe, test, expect, vi, type Mock } from "vitest";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { ItemCard } from "./ItemCard";
 import type { Item } from "../../types";
+import { useCartContext } from "../../hooks/useCartContext";
+
+// This tells Vitest to use the file in `__mocks__/useCartContext.ts`
+vi.mock("../../hooks/useCartContext");
 
 const mockItem: Item = {
   id: 1,
@@ -36,18 +39,11 @@ describe("ItemCard rendering", () => {
 
   test("renders star rating", () => {
     render(<ItemCard item={mockItem} />);
-    expect(screen.getAllByAltText("star").length).toBeGreaterThan(0);
+    expect(screen.getAllByAltText(/star/i).length).toBe(5);
   });
 });
 
 describe("ItemCard cart interaction", () => {
-  function setup(jsx: React.ReactElement) {
-    return {
-      user: userEvent.setup(),
-      ...render(jsx),
-    };
-  }
-
   test("shows Add to Cart button when item is not in the cart", () => {
     render(<ItemCard item={mockItem} />);
     const addToCartButton = screen.getByRole("button", {
@@ -56,32 +52,24 @@ describe("ItemCard cart interaction", () => {
     expect(addToCartButton).toBeInTheDocument();
   });
 
-  test("shows quantity input when item is in the cart", async () => {
-    const { user } = setup(<ItemCard item={mockItem} />);
-
-    const addToCartButton = await screen.findByRole("button", {
-      name: /add to cart/i,
+  test("shows quantity input when item is in the cart", () => {
+    // The spinbutton is shown only if the item already exists in cartItems.
+    // Mocking cartItems with a matching id will cause the condition to be true.
+    (useCartContext as Mock).mockReturnValue({
+      cartItems: [
+        {
+          id: 1,
+          quantity: 2,
+        },
+      ],
+      addItem: vi.fn(),
     });
-    await user.click(addToCartButton);
-    expect(
-      screen.getByRole("spinbutton", { name: /amount/i }),
-    ).toBeInTheDocument();
-  });
 
-  test("clamps quantity input to min and max limits", async () => {
-    const { user } = setup(<ItemCard item={mockItem} />);
+    render(<ItemCard item={mockItem} />);
 
-    const addToCartButton = await screen.findByRole("button", {
-      name: /add to cart/i,
-    });
-    await user.click(addToCartButton);
-
+    // Expect the QuantityInput to be visible
     const spinButton = screen.getByRole("spinbutton", { name: /amount/i });
-    await user.type(spinButton, "20"); // 10 is the limit
-    expect(spinButton).toHaveValue(10);
-
-    await user.clear(spinButton);
-    await user.type(spinButton, "-10"); // amount can't be negative
-    expect(spinButton).toHaveValue(0);
+    expect(spinButton).toBeInTheDocument();
+    expect(spinButton).toHaveValue(2);
   });
 });

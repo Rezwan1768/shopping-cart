@@ -3,6 +3,8 @@ import { render, screen } from "@testing-library/react";
 import type { Item } from "../../types";
 import { ItemCategory } from "./ItemCategory";
 
+vi.mock("../../hooks/useCartContext");
+
 let mockItems: Item[] = Array.from({ length: 5 }, (_, i) => ({
   id: i,
   title: "Item",
@@ -26,8 +28,8 @@ describe("ItemCategory", () => {
     expect(
       screen.getByRole("heading", { name: /jewelry/i }),
     ).toBeInTheDocument();
-    // Item names are a rendered in a h3 element.
 
+    // Item names are a rendered in a h3 element.
     const itemHeadings = screen.queryAllByRole("heading", { level: 3 });
     expect(itemHeadings).toHaveLength(5);
   });

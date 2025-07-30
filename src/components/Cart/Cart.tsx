@@ -32,7 +32,7 @@ export function Cart() {
           // Show total price and a buy button
           // The buy button does nothing
         }
-        <p>Total: {total}</p>
+        <p>Total: ${total}</p>
         <button>
           Buy <span>(Does nothing)</span>
         </button>

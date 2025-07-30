@@ -5,9 +5,11 @@ import { Shop } from "./Shop";
 import { useItemsByCategory } from "../../hooks/useItemsByCategory";
 import { MemoryRouter } from "react-router";
 
-vi.mock("../hooks/useItemsByCategory");
+vi.mock("../../hooks/useItemsByCategory");
 // Casts the imported function to a mocked version so TypeScript recognizes mock methods
 const mockedUseItemsByCategory = vi.mocked(useItemsByCategory);
+
+vi.mock("../../hooks/useCartContext");
 
 // Helper for creating mock items
 const mockItem = (overrides = {}) => ({
@@ -73,10 +75,8 @@ describe("Shop Component", () => {
       error: null,
       allItems: {
         mensClothing: [mockItem({ id: 1, title: "Shirt" })],
-        womensClothing: [
-          mockItem({ id: 2, title: "Dress", category: "women's clothing" }),
-        ],
-        jewelry: [mockItem({ id: 3, title: "Necklace", category: "jewelry" })],
+        womensClothing: [mockItem({ id: 2, title: "Dress" })],
+        jewelry: [mockItem({ id: 3, title: "Necklace" })],
       },
     });
 

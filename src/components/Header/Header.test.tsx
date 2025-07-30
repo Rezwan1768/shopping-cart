@@ -1,8 +1,8 @@
 import { describe, test, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Header } from "./Header";
 import { MemoryRouter } from "react-router";
+import { Header } from "./Header";
 
 describe("Header component", () => {
   test("shows correct content", () => {
