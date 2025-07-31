@@ -1,25 +1,17 @@
 import { useState } from "react";
 import { Outlet } from "react-router";
+import { useItemsByCategory } from "../../hooks/useItemsByCategory";
 import styles from "./App.module.css";
 import type { CartItem } from "../../types";
+import { Loading } from "../Loading/Loading";
 import { Header } from "../Header/Header";
-import { useItemsByCategory } from "../../hooks/useItemsByCategory";
 
 function App() {
   const [retryId, setRetryId] = useState(0); // To refetch data on error
   const { allItems, loading, error } = useItemsByCategory(retryId);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  if (loading)
-    return (
-      <div className={styles.container}>
-        <div
-          className={styles.loadSpinner}
-          role="status"
-          aria-label="Loading"
-        ></div>
-      </div>
-    );
+  if (loading) return <Loading />;
 
   if (error)
     return (

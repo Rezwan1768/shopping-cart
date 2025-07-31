@@ -7,7 +7,7 @@ export function Shop() {
 
   return (
     allItems && (
-      <>
+      <div className={styles.shop}>
         <nav className={styles.nav}>
           <a href="#mens">Men's</a>
           <a href="#womens">Women's</a>
@@ -31,7 +31,7 @@ export function Shop() {
             id="jewelry"
           />
         </section>
-      </>
+      </div>
     )
   );
 }

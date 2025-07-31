@@ -12,6 +12,7 @@
 
 .titleImage h2 {
   font-size: 1rem;
+  margin-bottom: 8px;
 }
 
 .titleImage img {
@@ -32,4 +33,12 @@
   font-size: inherit;
   font-weight: bold;
   padding: 2px 4px;
+}
+
+.card a {
+  color: inherit;
+}
+
+.card a:hover {
+  color: rgb(0, 181, 253);
 }

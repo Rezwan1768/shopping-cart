@@ -1,7 +1,13 @@
+.shop {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
 .shopItems {
+  flex-grow: 1;
   --nav-link-width: clamp(60px, 8vw, 80px);
   padding: 5px;
-  padding-left: calc(var(--nav-link-width) + 16px);
 }
 
 .nav {
@@ -9,10 +15,9 @@
   flex-direction: column;
   justify-content: center;
   gap: min(2vw, 15px);
-  margin-bottom: 20px;
-
-  position: fixed;
-  left: 5px;
+  position: sticky;
+  top: 60px;
+  left: 10px;
 }
 
 .nav a {

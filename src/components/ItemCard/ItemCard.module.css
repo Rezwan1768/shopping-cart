@@ -17,9 +17,21 @@
   height: 22%;
 }
 
-.itemImg {
+.imgLink {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.imgLink {
   width: 60%;
-  aspect-ratio: 1/1.1;
+  aspect-ratio: 1 / 1.1;
+  display: block;
+}
+
+.itemImg {
+  width: 100%;
+  aspect-ratio: 1 / 1.1;
   height: auto;
 }
 
@@ -61,4 +73,12 @@
 .cartActions button {
   padding: 5px;
   font-weight: bold;
+}
+
+.card a {
+  color: inherit;
+}
+
+.card a:hover {
+  color: rgb(0, 181, 253);
 }
