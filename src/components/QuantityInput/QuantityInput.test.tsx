@@ -49,6 +49,7 @@ describe("QuantityInput", () => {
       });
 
       render(<QuantityInput id={1} initialValue={5} removeWhenZero={true} />);
+
       const input = screen.getByLabelText(/amount/i);
       const user = userEvent.setup();
 

@@ -7,7 +7,9 @@ export function Header() {
 
   return (
     <div className={styles.header}>
-      <h1>FashionHub</h1>
+      <Link to="/">
+        <h1>FashionHub</h1>
+      </Link>
 
       {/* Toggle link text and target between "Cart" and "Shop" based on current page */}
       <Link to={isCartPage ? "/" : "/cart"} className={styles.cartButton}>

@@ -1,8 +1,9 @@
 import { describe, test, expect, vi, type Mock } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { ItemCard } from "./ItemCard";
-import type { Item } from "../../types";
 import { useCartContext } from "../../hooks/useCartContext";
+import { MemoryRouter } from "react-router";
+import type { Item } from "../../types";
+import { ItemCard } from "./ItemCard";
 
 // This tells Vitest to use the file in `__mocks__/useCartContext.ts`
 vi.mock("../../hooks/useCartContext");
@@ -20,10 +21,16 @@ const mockItem: Item = {
   },
 };
 
+beforeEach(() => {
+  render(
+    <MemoryRouter>
+      <ItemCard item={mockItem} />
+    </MemoryRouter>,
+  );
+});
+
 describe("ItemCard rendering", () => {
   test("should render item data correctly", () => {
-    render(<ItemCard item={mockItem} />);
-
     const heading = screen.getByRole("heading", {
       name: /cotton jacket/i,
     });
@@ -38,14 +45,12 @@ describe("ItemCard rendering", () => {
   });
 
   test("renders star rating", () => {
-    render(<ItemCard item={mockItem} />);
     expect(screen.getAllByAltText(/star/i).length).toBe(5);
   });
 });
 
 describe("ItemCard cart interaction", () => {
   test("shows Add to Cart button when item is not in the cart", () => {
-    render(<ItemCard item={mockItem} />);
     const addToCartButton = screen.getByRole("button", {
       name: /add to cart/i,
     });
@@ -56,16 +61,15 @@ describe("ItemCard cart interaction", () => {
     // The spinbutton is shown only if the item already exists in cartItems.
     // Mocking cartItems with a matching id will cause the condition to be true.
     (useCartContext as Mock).mockReturnValue({
-      cartItems: [
-        {
-          id: 1,
-          quantity: 2,
-        },
-      ],
+      cartItems: [{ id: 1, quantity: 2 }],
       addItem: vi.fn(),
     });
 
-    render(<ItemCard item={mockItem} />);
+    render(
+      <MemoryRouter>
+        <ItemCard item={mockItem} />
+      </MemoryRouter>,
+    );
 
     // Expect the QuantityInput to be visible
     const spinButton = screen.getByRole("spinbutton", { name: /amount/i });

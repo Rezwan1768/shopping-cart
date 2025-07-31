@@ -1,5 +1,6 @@
 import { describe, test, expect, vi, type Mock } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router";
 import { useCartContext } from "../../hooks/useCartContext";
 import { Cart } from "./Cart";
 
@@ -25,7 +26,11 @@ describe("Cart component", () => {
 
     mockUseCartContext.mockReturnValue({ cartItems: items });
 
-    render(<Cart />);
+    render(
+      <MemoryRouter>
+        <Cart />
+      </MemoryRouter>,
+    );
 
     // Check 3 item headings rendered
     expect(screen.getAllByRole("heading", { name: /item/i }).length).toBe(3);

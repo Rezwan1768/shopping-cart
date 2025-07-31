@@ -2,6 +2,7 @@ import { describe, test, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import type { Item } from "../../types";
 import { ItemCategory } from "./ItemCategory";
+import { MemoryRouter } from "react-router";
 
 vi.mock("../../hooks/useCartContext");
 
@@ -18,7 +19,9 @@ let mockItems: Item[] = Array.from({ length: 5 }, (_, i) => ({
 describe("ItemCategory", () => {
   test("renders the category heading and all item cards when items are provided", () => {
     render(
-      <ItemCategory heading="Jewelry" items={mockItems} id="section-id" />,
+      <MemoryRouter>
+        <ItemCategory heading="Jewelry" items={mockItems} id="section-id" />,
+      </MemoryRouter>,
     );
 
     // Check section element has correct id

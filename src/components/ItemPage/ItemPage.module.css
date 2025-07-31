@@ -53,3 +53,14 @@
   font-weight: bold;
   align-self: center;
 }
+
+@media (max-width: 475px) {
+  .detail {
+    flex-direction: column;
+  }
+
+  .controls {
+    width: 100%;
+    align-items: center;
+  }
+}

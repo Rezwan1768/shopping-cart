@@ -22,6 +22,7 @@ test("renders ErrorPage for unknown route via wildcard route", () => {
 test("clicking the link takes the user back to shop page", async () => {
   const user = userEvent.setup();
 
+  // Start in /unknown (invalid) page
   render(
     <MemoryRouter initialEntries={["/unknown"]}>
       <Routes>

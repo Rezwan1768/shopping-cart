@@ -11,8 +11,13 @@
   color: var(--background-color);
 }
 
+.header a {
+  text-decoration: none;
+}
+
 .header h1 {
   font-size: clamp(1.2rem, 3vw, 24px);
+  color: var(--background-color);
 }
 
 .cartButton {
@@ -25,4 +30,9 @@
   text-decoration: none;
   background-color: var(--background-color);
   color: var(--contrast-color);
+  transition: transform 0.2s linear;
+}
+
+.cartButton:hover {
+  transform: scale(1.1);
 }

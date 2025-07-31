@@ -1,15 +1,7 @@
-import { describe, test, expect, vi, beforeEach } from "vitest";
+import { describe, test, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { Shop } from "./Shop";
-import { useItemsByCategory } from "../../hooks/useItemsByCategory";
 import { MemoryRouter } from "react-router";
-
-vi.mock("../../hooks/useItemsByCategory");
-// Casts the imported function to a mocked version so TypeScript recognizes mock methods
-const mockedUseItemsByCategory = vi.mocked(useItemsByCategory);
-
-vi.mock("../../hooks/useCartContext");
 
 // Helper for creating mock items
 const mockItem = (overrides = {}) => ({
@@ -23,63 +15,23 @@ const mockItem = (overrides = {}) => ({
   ...overrides,
 });
 
-beforeEach(() => {
-  vi.clearAllMocks();
-});
+// Return few mocked items form the hook
+vi.mock("../../hooks/useCartContext", () => ({
+  useCartContext: () => ({
+    allItems: {
+      mensClothing: [mockItem({ id: 1, title: "Shirt" })],
+      womensClothing: [mockItem({ id: 2, title: "Dress" })],
+      jewelry: [mockItem({ id: 3, title: "Necklace" })],
+    },
+    cartItems: [],
+    addItem: vi.fn(),
+    removeItem: vi.fn(),
+    updateQuantity: vi.fn(),
+  }),
+}));
 
 describe("Shop Component", () => {
-  test("renders loading state", () => {
-    mockedUseItemsByCategory.mockReturnValue({
-      loading: true,
-      error: null,
-      allItems: null,
-    });
-
-    render(<Shop />);
-    expect(screen.getByRole("status")).toBeInTheDocument();
-  });
-
-  test("renders error state with retry button", () => {
-    mockedUseItemsByCategory.mockReturnValue({
-      loading: false,
-      error: "Failed to fetch",
-      allItems: null,
-    });
-
-    render(<Shop />);
-    expect(screen.getByText(/failed to fetch/i)).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: /try again/i }),
-    ).toBeInTheDocument();
-  });
-
-  test("clicking retry shows loading state", async () => {
-    mockedUseItemsByCategory
-      .mockReturnValueOnce({
-        loading: false,
-        error: "Failed to fetch",
-        allItems: null,
-      }) // initial
-      .mockReturnValueOnce({ loading: true, error: null, allItems: null }); // after retry
-
-    const user = userEvent.setup();
-    render(<Shop />);
-
-    await user.click(screen.getByRole("button", { name: /try again/i }));
-    expect(screen.getByRole("status")).toBeInTheDocument();
-  });
-
   test("renders categories when data is available", () => {
-    mockedUseItemsByCategory.mockReturnValue({
-      loading: false,
-      error: null,
-      allItems: {
-        mensClothing: [mockItem({ id: 1, title: "Shirt" })],
-        womensClothing: [mockItem({ id: 2, title: "Dress" })],
-        jewelry: [mockItem({ id: 3, title: "Necklace" })],
-      },
-    });
-
     render(
       <MemoryRouter>
         <Shop />

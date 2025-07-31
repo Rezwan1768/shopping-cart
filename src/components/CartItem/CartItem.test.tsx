@@ -1,8 +1,16 @@
-import { test, expect } from "vitest";
+import { test, expect, vi } from "vitest";
 import { screen, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router";
 import { CartItem } from "./CartItem";
 
-vi.mock("../../hooks/useCartContext");
+const removeItemMock = vi.fn();
+
+vi.mock("../../hooks/useCartContext", () => ({
+  useCartContext: () => ({
+    removeItem: removeItemMock,
+  }),
+}));
 
 const mockItem = {
   id: 3,
@@ -13,7 +21,11 @@ const mockItem = {
 };
 
 test("content is rendered", () => {
-  render(<CartItem item={mockItem} />);
+  render(
+    <MemoryRouter>
+      <CartItem item={mockItem} />
+    </MemoryRouter>,
+  );
 
   expect(screen.getByRole("heading", { name: /my item/i })).toBeInTheDocument();
   expect(screen.getByLabelText(/amount/i)).toHaveValue(7);
@@ -24,4 +36,19 @@ test("content is rendered", () => {
   // Price displayed is quantity × unit price, formatted to 2 decimal places
   const total = (mockItem.price * mockItem.quantity).toFixed(2);
   expect(screen.getByText(`$${total}`)).toBeInTheDocument();
+});
+
+test("calls removeItem with correct id when Remove button is clicked", async () => {
+  render(
+    <MemoryRouter>
+      <CartItem item={mockItem} />
+    </MemoryRouter>,
+  );
+
+  const user = userEvent.setup();
+  const removeButton = screen.getByRole("button", { name: /remove/i });
+
+  await user.click(removeButton);
+
+  expect(removeItemMock).toHaveBeenCalledWith(mockItem.id);
 });

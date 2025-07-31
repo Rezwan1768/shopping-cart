@@ -38,7 +38,7 @@ export function QuantityInput({
 
   function handleBlur() {
     const quantity = Number(amount);
-    // Removes the item if quantity is 0 and removeWhenZero is true;
+    // Removes the item if quantity is (<= 0 || empty) and removeWhenZero is true;
     // otherwise, keeps the quantity at a minimum of 1
     updateQuantity(id, quantity, removeWhenZero);
   }
