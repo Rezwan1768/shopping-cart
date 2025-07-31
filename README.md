@@ -1,69 +1,55 @@
-# React + TypeScript + Vite
+# FashionHub 🛍️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Demo: [https://fashionhub-shop.netlify.app](https://fashionhub-shop.netlify.app)
 
-Currently, two official plugins are available:
+FashionHub is a responsive e-commerce demo app built with React. This project was created to help me get hands-on experience with:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **TypeScript** – Using static types to catch bugs early and improve developer experience.
+- **React Router (v7)** – Implementing client-side routing for navigation between product listing and detail pages.
+- **React Testing Library + Vitest** – Writing unit and integration tests to ensure component reliability.
+- **Component-based architecture** – Building reusable UI components.
+- **State management** – Managing cart state and quantity updates locally.
+- **Responsive design** – Building a layout that works well on desktop and mobile.
 
-## Expanding the ESLint configuration
+## 🧪 Testing
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The app includes component tests using **React Testing Library**, with utilities like:
 
-```js
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+- `@testing-library/user-event`
+- `vitest`
+- `jsdom`
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Tests cover things like:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+- Rendering product data
+- Simulating user interactions (e.g., typing, clicking, navigating)
+- Adding/removing items to/from cart
+- Routing between pages
+
+## 🛠️ Tech Stack
+
+- React
+- TypeScript
+- React Router
+- React Testing Library
+- Vitest
+- CSS Modules
+- Vite
+- Netlify (for deployment)
+
+## 🚀 Deployment
+
+Deployed via [Netlify](https://www.netlify.com/). Includes a `_redirects` file to support client-side routing with React Router.
+
+## 📦 Getting Started
+
+```bash
+git clone https://github.com/Rezwan1768/shopping-cart.git
+cd fashionhub
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🗒️ Notes
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+This project is for learning and demonstration purposes only. Product images and data are mock content and not associated with any real brand.
