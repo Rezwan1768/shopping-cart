@@ -45,7 +45,7 @@ Deployed via [Netlify](https://www.netlify.com/). Includes a `_redirects` file t
 
 ```bash
 git clone https://github.com/Rezwan1768/shopping-cart.git
-cd fashionhub
+cd shopping-cart
 npm install
 npm run dev
 ```
